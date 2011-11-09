@@ -1,0 +1,9 @@
+DVD Library application
+
+
+Basic functionalities:
+
+* user login
+* user types: default / admin
+* user admin: add dvd's, remove available (non-borrowed) dvd's from library
+* user non-admin: borrow, return, browse all, browse borrowed 
