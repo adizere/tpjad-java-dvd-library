@@ -1,0 +1,13 @@
+Model:
+  - Dvd
+  - User
+  - Admin
+  - Rental
+  
+Views:
+  - Login: 
+      buttons: Login (Checkbox Admin), Browse Library;
+      textarea: username, password
+  - Browse Library (comun pentru logged-in user si non-logged in)
+      lista de Dvd-uri valabile, lista de Dvd-uri bagate in cos
+      buttons: Imprumuta (ce e in cos), Restituie, Logout, ">", "<" (disabled pentru non-logged-in)
