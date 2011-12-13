@@ -7,3 +7,10 @@ Basic functionalities:
 * user types: default / admin
 * user admin: add dvd's, remove available (non-borrowed) dvd's from library
 * user non-admin: borrow, return, browse all, browse borrowed 
+
+
+Stari DVD:
+* free: tabelul DVD - quantity x
+* pending: tabelul Rentals intrare noua(date_started = null; date_end = null; cost = null;); tabelul DVD - quantity--
+* rented: tabelul Rentals update( date_started = now(); date_end = CONST; cost = dvd_price*(date_end-date_end);
+* returned: tabelul Rentals update( date_ended = now() ); tabelul DVD - quantity++
