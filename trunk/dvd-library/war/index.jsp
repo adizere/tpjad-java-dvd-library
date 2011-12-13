@@ -1,9 +1,8 @@
 <html>
 	<head>
-		<title>Example :: Spring Application</title>
+		<title>DVD Library - HOME</title>
 	</head>
 	<body>
-		<h1>Example - Spring Application</h1>
-		<p>This is my test.</p>
+		<h1>Please Log In</h1>
 	</body>
 </html>
