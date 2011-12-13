@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
-<project name="springapp" basedir="." default="usage">
+<project name="dvd-library" basedir="." default="usage">
 	<property file="build.properties"/>
 	<property name="src.dir" value="src"/>
 	<property name="web.dir" value="war"/>
 	<property name="build.dir" value="${web.dir}/WEB-INF/classes"/>
-	<property name="name" value="springapp"/>
+	<property name="name" value="dvd-library"/>
 	<path id="master-classpath">
 	<fileset dir="${web.dir}/WEB-INF/lib">
 	<include name="*.jar"/>
@@ -72,7 +72,7 @@
 	<include name="catalina-ant.jar"/>
 	</fileset>
 	</path>
-	<taskdef name="install" classname="org.apache.catalina.ant.InstallTask">
+	<taskdef name="deploy	" classname="org.apache.catalina.ant.DeployTask">
 	<classpath refid="catalina-ant-classpath"/>
 	</taskdef>
 	<taskdef name="reload" classname="org.apache.catalina.ant.ReloadTask">
