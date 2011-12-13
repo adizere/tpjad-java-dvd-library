@@ -8,6 +8,11 @@ Views:
   - Login: 
       buttons: Login (Checkbox Admin), Browse Library;
       textarea: username, password
-  - Browse Library (comun pentru logged-in user si non-logged in)
+  - Browse Library (comun pentru logged-in user si non-logged in): apare cand se logheaza un user sau cand cineva non-logged-in apasa Browse
+        $ logged-in: toate butoanele valabile, cosul valabil
+        $ non-logged-in: butoanele disabled, cosul disabled
       lista de Dvd-uri valabile, lista de Dvd-uri bagate in cos
       buttons: Imprumuta (ce e in cos), Restituie, Logout, ">", "<" (disabled pentru non-logged-in)
+  - Admin Area: apare cand se logheaza un Admin
+      butoane: Logout, Anuleaza Pending DVDs (bulk), Cauta Pending, Check-Out Pending
+      lista Pending
