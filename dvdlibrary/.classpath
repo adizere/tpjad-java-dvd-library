@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="WEB-INF/src"/>
+	<classpathentry exported="true" kind="lib" path="WEB-INF/lib/commons-lang-2.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="WEB-INF/lib/commons-logging.jar"/>
+	<classpathentry exported="true" kind="lib" path="WEB-INF/lib/jfl.jar"/>
+	<classpathentry exported="true" kind="lib" path="WEB-INF/lib/jstl.jar"/>
+	<classpathentry exported="true" kind="lib" path="WEB-INF/lib/log4j-1.2.8.jar"/>
+	<classpathentry exported="true" kind="lib" path="WEB-INF/lib/spring.jar"/>
+	<classpathentry exported="true" kind="lib" path="WEB-INF/lib/standard.jar"/>
+	<classpathentry exported="true" kind="lib" path="WEB-INF/lib/taglibs-string.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/apache-tomcat-7.0.22/webapps/dvdlibrary/WEB-INF/lib/servlet-api.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

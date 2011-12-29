@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>  
+	<bean id="dvdViewController" 
+	      class="com.dvdlibrary.web.DvdViewController">        
+		<constructor-arg index="0">
+			<ref bean="myDvdLibrary"/>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="myDvdLibrary" class="com.dvdlibrary.business.MyDvdLibrary">
+	</bean>
+
+    <bean id="logonValidator" class="com.dvdlibrary.web.LogonValidator"/>
+	<bean id="logonForm" class="com.dvdlibrary.web.LogonFormController">
+        <property name="sessionForm"><value>true</value></property>
+        <property name="commandName"><value>credentials</value></property>
+        <property name="commandClass"><value>com.dvdlibrary.business.Credentials</value></property>
+        <property name="validator"><ref bean="logonValidator"/></property>
+        <property name="formView"><value>logon</value></property>
+        <property name="successView"><value>dvd_view.htm</value></property>
+    </bean>
+
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename"><value>messages</value></property>
+    </bean>
+	
+	<!-- We can have more than one handler defined! -->
+	<bean id="urlMapping" 
+          class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="urlMap">
+			<map>
+				<entry key="/view_dvd.htm">
+					<ref bean="dvdViewController" />
+				</entry>
+				<entry key="/logon.htm">
+					<ref bean="logonForm"/>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass"><value>org.springframework.web.servlet.view.JstlView</value></property>
+        <property name="prefix"><value>/WEB-INF/jsp/</value></property>
+        <property name="suffix"><value>.jsp</value></property>
+    </bean>
+</beans>
