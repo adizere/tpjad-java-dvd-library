@@ -5,11 +5,11 @@
 	<bean id="dvdViewController" 
 	      class="com.dvdlibrary.web.DvdViewController">        
 		<constructor-arg index="0">
-			<ref bean="myDvdLibrary"/>
+			<ref bean="mydvdlibrary"/>
 		</constructor-arg>
 	</bean>
 	
-	<bean id="myDvdLibrary" class="com.dvdlibrary.business.MyDvdLibrary">
+	<bean id="mydvdlibrary" class="com.dvdlibrary.business.MyDvdLibrary">
 	</bean>
 
     <bean id="logonValidator" class="com.dvdlibrary.web.LogonValidator"/>
@@ -26,12 +26,12 @@
         <property name="basename"><value>messages</value></property>
     </bean>
 	
-	<!-- We can have more than one handler defined! -->
+	<!-- Note that we can have more than one handler defined! -->
 	<bean id="urlMapping" 
           class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="urlMap">
 			<map>
-				<entry key="/view_dvd.htm">
+				<entry key="/dvd_view.htm">
 					<ref bean="dvdViewController" />
 				</entry>
 				<entry key="/logon.htm">
