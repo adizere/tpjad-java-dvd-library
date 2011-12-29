@@ -35,7 +35,7 @@
 		<p>
 			<label for="_Password">Password:</label>
 			<spring:bind path="credentials.password">
-			<input type="password" name="Password" id="_Password" class="FormInputStyle" onfocus="ActivateFormInputBgColor(this,'FormStyeObjRollover')" onblur="DeactivateFormInputBgColor(this, 'FormStyeObjRollover')" />
+			<input type="password" name="password" id="_Password" class="FormInputStyle" onfocus="ActivateFormInputBgColor(this,'FormStyeObjRollover')" onblur="DeactivateFormInputBgColor(this, 'FormStyeObjRollover')" />
 			</spring:bind>
 		</p>
 		<p>
@@ -46,8 +46,8 @@
 		</spring:hasBindErrors>
         </p>
 		<p>
-			<label for="submit">&nbsp;</label>
-			<input type="button" value="Submit" onclick="gAction='REQ_LOGIN';DisplayContent()"/>
+			<label for="_Submit">&nbsp;</label>
+			<input type="submit" value="Logon" id="_Submit" />
 		</p>
 	</form>
 	</div>

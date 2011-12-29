@@ -20,7 +20,8 @@ public class LogonValidator implements Validator {
 
     public void validate(Object obj, Errors errors) {
         Credentials credentials = (Credentials) obj;
-        if (credentials == null) {
+        if (credentials == null
+        	|| credentials.getUsername() == null || credentials.getPassword() == null) {
             errors.rejectValue("username", "error.login.not-specified", null,
                     "Value required.");
         } else {
@@ -35,7 +36,6 @@ public class LogonValidator implements Validator {
                             null, "Incorrect Password.");
                 }
             }
-
         }
     }
 

@@ -35,7 +35,7 @@ public class DvdViewController implements Controller {
 
         model.put("dvdItems", dvdItems);
 
-        return new ModelAndView("myDvdlibrary", "model", model);
+        return new ModelAndView("mydvdlibrary", "model", model);
     }
 
     private List getAllDvds() {
