@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:security="http://www.springframework.org/schema/security"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+
+    <bean id="dvdWorldDao" class="bigbank.DvdWorldDaoStub"/>
+
+    <bean id="seedData" class="bigbank.SeedData">
+        <property name="dvdWorldDao" ref="dvdWorldDao"/>
+    </bean>
+
+    <bean id="dvdWorldService" class="bigbank.DvdWorldServiceImpl">
+        <constructor-arg ref="dvdWorldDao"/>
+        <!-- This will add a security interceptor to the bean
+        <security:intercept-methods>
+            <security:protect method="bigbank.DvdWorldService.*" access="IS_AUTHENTICATED_REMEMBERED" />
+            <security:protect method="bigbank.DvdWorldService.post" access="ROLE_TELLER" />
+        </security:intercept-methods>  -->
+    </bean>
+
+</beans>

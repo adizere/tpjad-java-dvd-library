@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean name="/viewDvds.html" class="bigbank.web.ListAccounts">
+        <constructor-arg ref="dvdWorldService"/>
+    </bean>
+
+    <bean name="/post.html" class="bigbank.web.PostAccounts">
+        <constructor-arg ref="dvdWorldService"/>
+    </bean>
+
+	<!--
+	<bean id="loginValidator" class="com.dvdworld.web.LoginValidator"/>
+	<bean id="loginForm" class="com.dvdworld.web.LoginFormController">
+        <property name="sessionForm"><value>true</value></property>
+        <property name="commandName"><value>credentials</value></property>
+        <property name="commandClass"><value>com.dvdworld.business.Credentials</value></property>
+        <property name="validator"><ref bean="loginValidator"/></property>
+        <property name="formView"><value>login</value></property>
+        <property name="successView"><value>/secure/index.jsp</value></property>
+	</bean>-->
+    
+     <!-- Messages and formatting -->
+     
+ 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename"><value>messages</value></property>
+    </bean>
+    
+    <!--
+    <bean id="urlMapping"
+   		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+   		<property name="urlMap">
+   			<map>
+   				
+   				<entry key="/login.html">
+   					<ref bean="loginForm" />
+   				</entry>
+   				
+   			</map>
+   		</property>
+   	</bean>
+   	-->
+	
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    	<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+    
+    <!--
+    Redirect login page without using a controller.
+    Otherwise we would need the above urlMapping and login form controller.
+    -->
+    <bean name="/login.html" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+    	<property name="viewName" value="login"/>
+    </bean>
+    
+    <bean name="/about.html" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+    	<property name="viewName" value="about"/>
+    </bean>
+
+</beans>
