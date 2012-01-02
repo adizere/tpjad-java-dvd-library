@@ -1,0 +1,262 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*
+General web site style sheet.
+*/
+
+body {
+	font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif;
+	background: #333;
+	margin: 0;
+	padding: 0;
+	color: #000;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+	margin-top: 0;
+}
+
+h4 {
+	font: 10px Verdana;
+}
+
+ul, ol, dl {
+	padding: 0;
+	margin: 0;
+}
+
+a img {
+	border:none;
+}
+
+a:link {
+	color: #42413C;
+	text-decoration:underline;
+}
+
+a:visited {
+	color: #6E6C64;
+	text-decoration: underline;
+}
+
+a:hover, a:active, a:focus {
+	color: #DA7E03;
+	text-decoration: none;
+}
+
+
+/* ========== Panes ========== */
+
+/* Fixed width container that surrounds all other divs. */
+.BigContainerPane {
+	width: 965px;
+	margin: 0 auto; /* The auto value on the sides, coupled with the width, centers the layout */
+	overflow: hidden; /* This declaration makes the .container understand where the floated columns within ends and contain them */
+}
+
+
+.TopSpacing {
+	height: 10px;
+	background-color: inherit;
+}
+
+
+.TopMenuPane {
+	height: 40px;
+	background-color: #09C;
+}
+
+
+.HeaderPane {
+	color: #FFF;
+	height: 70px;
+}
+
+.ContentPane {
+	padding: 10px 0;
+	padding-left: 5px;
+	background: #fff;
+	width: 965px;
+	min-height: 300px;
+	float: left;
+	color: #333;
+	font: 12px Verdana, Geneva, sans-serif;
+	background: #fff url(../img/tvanddvd-small.jpg) no-repeat right bottom;
+}
+
+.ContentPane h3 {
+	color: #BE3232;
+	text-decoration: none;
+}
+
+.PresentationBlock {
+	padding-bottom: 10px;
+}
+
+/* ========== RightPane ========== */
+.RightPane {
+	float: left;
+	width: 180px;
+	background: #EADCAE;
+	padding: 10px 0;
+}
+
+/* ========== LowerPane ========== */
+.LowerPane {
+	padding: 10px 0;
+	background: #333;
+	position: relative;
+	clear: both;
+	font: 11px arial;
+	color: #999;
+}
+
+
+/* ========== Form style ========== */
+
+.FormInputStyle {
+	color: #333;
+	background: #E8E8E8;
+	border: 1px solid #CCC;
+	width: 350px;
+}
+
+.FormStyeObjRollover {
+	background: #ECF2F4;
+}
+
+textarea.FormStyeObjRollover {
+	background: #ECF2F4;
+}
+
+select.FormStyeObjRollover {
+	background: #ECF2F4;
+}
+
+.FormTextAreaStyle {
+	color: #333;
+	background: #E8E8E8;
+	border: 1px solid #CCC;
+	width: 350px;
+	font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif;
+}
+
+.FormSelectStyle {
+	color: #333;
+	background: #E8E8E8;
+	border: 1px solid #CCC;
+	width: 352px;
+}
+
+.FormStyle label {
+	color: #666;
+	width: 80px;
+	float: left;
+	text-align: right;
+	margin-right: 5px;
+	display: block;
+}
+
+.FormStyle p {
+	margin-top: 2px;
+	margin-bottom: 1px;
+}
+
+
+/* ========== Main Menu ========== */
+
+.TopMenuPane {
+	height: 50px;
+	background-color: #EBEBEB;
+	margin: 0;
+	padding: 0 0 0 0;
+}
+
+#MainMenu {	
+	margin: 0;
+	padding: 0;
+	z-index: 30;
+}
+
+#MainMenu li {	
+	margin: 0;
+	padding: 0;
+	list-style: none; /* hide those bullets */
+	float: left;
+	font: 15px arial;
+}
+
+#MainMenu li a {	
+	display: block;
+	margin: 0 1px 0 0;
+	padding: 4px 10px;
+	width: auto;
+	background: #666;
+	color: #FFF;
+	text-align: center;
+	text-decoration: none;
+}
+
+#MainMenu li a:hover {
+	background: #000;
+}
+
+#MainMenu div {	
+	position: absolute;
+	visibility: hidden;
+	margin: 0;
+	padding: 0;
+	background: #EAEBD8;
+	border: none;
+}
+
+#MainMenu div a {	
+	position: relative;
+	display: block;
+	margin: 0;
+	padding: 5px 10px;
+	width: auto;
+	white-space: nowrap;
+	text-align: left;
+	text-decoration: none;
+	background: #999;
+	color: #FFF;
+	font: 11px arial;
+}
+
+#MainMenu div a:hover {	
+	background: #000;
+	color: #FFF;
+}
+
+#_WelcomeUser {
+	position: relative;
+	float: right;
+	margin: 0;
+	padding-right: 10px;
+	font: 11px arial;
+}
+
+/* ========== Legend style ========== */
+.Legend {
+	font: 11px arial;
+	color: #999;
+}
+
+.OperationResult {
+	font: 11px arial;
+	color: #BE3232;
+}
+
+/* ========== TableStyle1 ========== */
+
+table.TableStyle1, table.TableStyle tr, table.TableStyle th, table.TableStyle1 td {
+	border-collapse: collapse;
+	border: 1px solid #C30;
+}
+
+.TableStyle1 th {
+	background-color: #BE3232;
+	color: #FFF;
+}

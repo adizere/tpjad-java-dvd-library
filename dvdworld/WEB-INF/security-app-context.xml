@@ -1,0 +1,84 @@
+<!-- 
+DVD World web site security context XML file.
+This file describes the security access rights of the places in our web site.
+ -->
+
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                    http://www.springframework.org/schema/security 
+                    http://www.springframework.org/schema/security/spring-security-3.0.3.xsd">
+
+	<!--
+	Add security to method calls.
+	This is a more powerful and robust approach then securing URL patterns.
+	The following line enables the use of Security annotations on our Spring interfaces.
+	-->
+	<global-method-security pre-post-annotations="enabled" />
+	
+	
+	<http auto-config="true" use-expressions="true">
+		<!-- Styles -->
+		<intercept-url pattern="/public/style/**" access="permitAll" />
+		<!-- Images -->
+		<intercept-url pattern="/public/img/**" access="permitAll" />
+		<!-- User Scripts (Animations & AJAX HTTP Requests) -->
+		<intercept-url pattern="/public/javascript/**" access="permitAll" />
+		<!-- Welcome Page -->
+		<intercept-url pattern="/index.jsp" access="permitAll" />
+		<!-- Secured Page -->
+		<intercept-url pattern="/secure/**" access="isAuthenticated()" />
+		<!-- Extremely Secured Page -->
+		<intercept-url pattern="/secure/extreme/**" access="hasRole('supervisor')" />
+		<!-- View DVDs Page -->
+		<intercept-url pattern="/viewDvds.html" access="isAuthenticated()" />
+		<!-- Login Page -->
+		<intercept-url pattern="/login*" access="permitAll" />
+		<!-- Some Posting Page -->
+		<intercept-url pattern="/post.html" access="hasAnyRole('supervisor','teller')" />
+		<!-- No, no! -->
+		<intercept-url pattern="/**" access="denyAll" />
+		
+		<!--
+			Uncomment this to use default login page.
+			<form-login />
+			<logout />-->
+		
+		 
+		<!-- Uncomment this to use custom login page.  -->
+		
+		<form-login login-page="/login.html"
+					login-processing-url="/loginProcess"
+					default-target-url="/index.jsp"
+					authentication-failure-url="/login.html?login_error=1" />
+		<!-- <logout logout-url="/index.jsp" logout-success-url="index.jsp" /> -->
+		<logout />
+		
+	</http>
+
+	<!-- 
+	User roles and user accounts:
+	user		- normal logged user
+				- librarian
+	superuser	- administrator
+	-->
+
+   	<!--
+   		Static user authentication.
+   		Useful for testing purposes.
+   	-->
+   	
+    <authentication-manager>
+        <authentication-provider>
+            <user-service>
+                <user name="rod" password="koala" authorities="supervisor, teller, user" />
+                <user name="dianne" password="emu" authorities="teller, user" />
+                <user name="scott" password="wombat" authorities="user" />
+                <user name="peter" password="opal" authorities="user" />
+            </user-service>
+        </authentication-provider>
+    </authentication-manager>
+    
+</beans:beans>
