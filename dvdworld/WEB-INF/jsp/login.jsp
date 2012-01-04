@@ -32,6 +32,7 @@ If you want to change this, be sure to change all the links in the website as we
 	<%@ include file="/WEB-INF/jsp/common/pageHeader.jsp" %>
 	
 	<div class="ContentPane" id="_MainContent">
+	<div class="RealContentPane" id="_RealContentPane">
 	
 	<br/>
 
@@ -80,6 +81,8 @@ If you want to change this, be sure to change all the links in the website as we
 			</c:if>
 		</div>
 	</form>
+	</div>
+	
 	</div>
 	</div>
 	

@@ -3,12 +3,12 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
-
-    <bean name="/viewDvds.html" class="bigbank.web.ListAccounts">
-        <constructor-arg ref="dvdWorldService"/>
+    
+    <bean name="/viewDvds.html" class="com.dvdworld.web.ListDvds">
+    	<constructor-arg ref="dvdWorldService" />
     </bean>
 
-    <bean name="/post.html" class="bigbank.web.PostAccounts">
+    <bean name="/processCart.html" class="bigbank.web.ProcessCart">
         <constructor-arg ref="dvdWorldService"/>
     </bean>
 

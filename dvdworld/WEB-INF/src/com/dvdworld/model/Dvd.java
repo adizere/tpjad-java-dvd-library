@@ -4,11 +4,27 @@ package com.dvdworld.model;
 // This is what we are borrowing.
 //
 public class Dvd {
-	int id;
+	int id = -1;
 	String title;
 	String description;
 	int quantity;
 	double price;
+	
+	public Dvd(String title) {
+		this.title = title;
+	}
+	
+	public Dvd(String title, double price) {
+		this.title = title;
+		this.price = price;
+	}
+	
+	public Dvd(String title, String description, int quantity, double price) {
+		this.title = title;
+		this.description = description;
+		this.quantity = quantity;
+		this.price = price;
+	}
 	
 	public int getId() {
 		return this.id;
@@ -48,5 +64,9 @@ public class Dvd {
 	
 	public void setPrice(int price) {
 		this.price = price;
+	}
+	
+	public String toString() {
+		return "DVD[id="+id+",title="+title+",description="+description+",quantity="+quantity+",price="+price;
 	}
 }
