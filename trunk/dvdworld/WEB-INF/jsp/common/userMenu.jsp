@@ -13,18 +13,34 @@
 
 <div class="TopMenuPane">
     <ul id="MainMenu">
+        <li><a href="index.jsp"
+            onmouseover="MenuOpen('Menu_Home')" 
+            onmouseout="MenuCloseTime()">Home</a>
+            <div id="Menu_Home"
+                onmouseover="MenuCancelCloseTime()" 
+                onmouseout="MenuCloseTime()">
+            </div>
+        </li>
         <li><a href="viewDvds.html"
-            onmouseover="MenuOpen('ViewDVDs')" 
+            onmouseover="MenuOpen('Menu_ViewDVDs')" 
             onmouseout="MenuCloseTime()">View DVDs</a>
-            <div id="ViewDVDs"
+            <div id="Menu_ViewDVDs"
+                onmouseover="MenuCancelCloseTime()" 
+                onmouseout="MenuCloseTime()">
+            </div>
+        </li>
+        <li><a href="myShoppingCart.html"
+            onmouseover="MenuOpen('Menu_MyShoppingCart')" 
+            onmouseout="MenuCloseTime()">My Shopping Cart</a>
+            <div id="Menu_MyShoppingCart"
                 onmouseover="MenuCancelCloseTime()" 
                 onmouseout="MenuCloseTime()">
             </div>
         </li>
         <li><a href="about.html"
-            onmouseover="MenuOpen('About')"
+            onmouseover="MenuOpen('Menu_About')"
             onmouseout="MenuCloseTime()">About</a>
-            <div id="About"
+            <div id="Menu_About"
                 onmouseover="MenuCancelCloseTime()"
                 onmouseout="MenuCloseTime()">
             </div>

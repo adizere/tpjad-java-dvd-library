@@ -6,18 +6,18 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd">
 
-    <bean id="dvdWorldDao" class="bigbank.DvdWorldDaoStub"/>
+    <bean id="dvdWorldDao" class="com.dvdworld.services.DvdWorldDaoStub"/>
 
-    <bean id="seedData" class="bigbank.SeedData">
+    <bean id="seedData" class="com.dvdworld.services.SeedData">
         <property name="dvdWorldDao" ref="dvdWorldDao"/>
     </bean>
 
-    <bean id="dvdWorldService" class="bigbank.DvdWorldServiceImpl">
+    <bean id="dvdWorldService" class="com.dvdworld.services.DvdWorldServiceImpl">
         <constructor-arg ref="dvdWorldDao"/>
         <!-- This will add a security interceptor to the bean
         <security:intercept-methods>
-            <security:protect method="bigbank.DvdWorldService.*" access="IS_AUTHENTICATED_REMEMBERED" />
-            <security:protect method="bigbank.DvdWorldService.post" access="ROLE_TELLER" />
+            <security:protect method="com.dvdworld.services.DvdWorldService.*" access="IS_AUTHENTICATED_REMEMBERED" />
+            <security:protect method="com.dvdworld.services.DvdWorldService.post" access="ROLE_TELLER" />
         </security:intercept-methods>  -->
     </bean>
 

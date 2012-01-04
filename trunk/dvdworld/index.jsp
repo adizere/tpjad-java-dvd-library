@@ -21,6 +21,7 @@ each time he visits the website.
 	<%@ include file="/WEB-INF/jsp/common/pageHeader.jsp" %>
 	
 	<div class="ContentPane" id="_MainContent">
+	<div class="RealContentPane" id="_RealContentPane">
 	
 	<br/>
 
@@ -37,6 +38,7 @@ each time he visits the website.
 
 	<br /><br />
 	
+	</div>
 	</div>
 	
 	<%@ include file="/WEB-INF/jsp/common/pageFooter.jsp" %>
