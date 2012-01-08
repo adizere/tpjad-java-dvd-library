@@ -18,10 +18,10 @@
 	   <param-value>
 	   		classpath:applicationContext-business.xml
 			/WEB-INF/security-app-context.xml
+			/WEB-INF/webmvc-context.xml
+			/WEB-INF/data-access-context.xml
 	   </param-value>
 	</context-param>
-	
-	<import resource="webmvc-context.xml" />
 	
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>

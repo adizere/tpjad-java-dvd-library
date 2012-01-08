@@ -2,10 +2,14 @@ package com.dvdworld.model;
 
 import java.util.Date;
 
+import com.dvdworld.model.Dvd;
+
 public class Rental {
-	int id;
-	Dvd dvdId;
-	User borrowerId;
+	int id = -1;
+	// From here we store the DVD id in the DB.
+	Dvd dvd;
+	// From here we store the user id in the DB.
+	User user;
 	int quantity;
 	// When was the DVD borrowed?
 	Date startDate;
@@ -13,6 +17,77 @@ public class Rental {
 	Date dueDate;
 	// What was the DVD actually brought back?
 	Date endDate;
-	// How much does the borrower pay for this dvd?
+	// How much does the borrower pay for this DVD?
 	double cost;
+	
+	public Rental() {
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public int getId() {
+		return this.id;
+	}
+	
+	public void setDvd(Dvd dvd) {
+		this.dvd = dvd;
+	}
+	
+	public Dvd getDvd() {
+		return this.dvd;
+	}
+	
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	public User getUser() {
+		return this.user;
+	}
+	
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+	
+	public int getQuantity() {
+		return this.quantity;
+	}
+	
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+	
+	public Date getStartDate() {
+		return this.startDate;
+	}
+	
+	public void setDueDate(Date dueDate) {
+		this.dueDate = dueDate;
+	}
+	
+	public Date getDueDate() {
+		return this.dueDate;
+	}
+	
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+	
+	public Date getEndDate() {
+		return this.endDate;
+	}
+	
+	public void setCost(double cost) {
+		this.cost = cost;
+	}
+	
+	public double getCost() {
+		return this.cost;
+	}
+
+	public String toString() {
+		return "Rental[id="+id+","+dvd.toString()+"]";
+	}
 }

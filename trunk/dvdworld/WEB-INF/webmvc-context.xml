@@ -13,7 +13,12 @@
 
     <mvc:annotation-driven />
     
+    <!--
+    Configuring View Controllers with a shortcut for definig a ParameterizableViewController.
+    Using this method when there is no Java controller logic to execute before the view generates the response.
+    -->
     <mvc:view-controller path="/login.html" />
+    <mvc:view-controller path="/about.html" />
 
     <!-- Declare the Resolver -->
     <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />

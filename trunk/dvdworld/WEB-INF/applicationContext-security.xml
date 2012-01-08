@@ -46,6 +46,7 @@
         scott/wombat
         peter/opal
     -->
+    <!--
     <authentication-manager>
         <authentication-provider>
             <password-encoder hash="md5"/>
@@ -57,5 +58,5 @@
             </user-service>
         </authentication-provider>
     </authentication-manager>
-
+	-->
 </beans:beans>

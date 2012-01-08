@@ -14,6 +14,6 @@ public enum CartOperations {
 			return EMPTYCART;
 		}
 		
-		throw new IllegalArgumentException("No Enum specified for this string");
+		throw new IllegalArgumentException("No Enum specified for this string (\"" + s + "\")");
 	}
 }

@@ -26,6 +26,14 @@ public class Dvd {
 		this.price = price;
 	}
 	
+	public Dvd(int id, String title, String description, int quantity, double price) {
+		this.id = id;
+		this.title = title;
+		this.description = description;
+		this.quantity = quantity;
+		this.price = price;
+	}
+	
 	public int getId() {
 		return this.id;
 	}

@@ -4,11 +4,27 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
     
-    <bean name="/viewDvds.html" class="com.dvdworld.web.ListDvds">
+    <!--<bean name="/viewDvds.html" class="com.dvdworld.web.ListDvds">
+    	<constructor-arg ref="dvdWorldService" />
+    </bean>
+    
+    <bean name="/myShoppingCart.html" class="com.dvdworld.web.MyCart">
     	<constructor-arg ref="dvdWorldService" />
     </bean>
 
-    <bean name="/processCart.html" class="bigbank.web.ProcessCart">
+    <bean name="/processCart.html" class="com.dvdworld.web.ProcessCart">
+        <constructor-arg ref="dvdWorldService"/>
+    </bean> -->
+    
+    <bean id="listDvds" class="com.dvdworld.web.ListDvds">
+    	<constructor-arg ref="dvdWorldService" />
+    </bean>
+
+    <bean id="myShoppingCart" class="com.dvdworld.web.MyCart">
+    	<constructor-arg ref="dvdWorldService" />
+    </bean>
+
+    <bean id="processCart" class="com.dvdworld.web.ProcessCart">
         <constructor-arg ref="dvdWorldService"/>
     </bean>
 
@@ -43,6 +59,23 @@
    		</property>
    	</bean>
    	-->
+   	
+   	<bean id="urlMapping"
+   		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+   		<property name="urlMap">
+   			<map>
+   				<entry key="/viewDvds.html">
+   					<ref bean="listDvds" />
+   				</entry>
+   				<entry key="/myShoppingCart.html">
+   					<ref bean="myShoppingCart"/>
+   				</entry>
+   				<entry key="/processCart.html">
+   					<ref bean="processCart" />
+   				</entry>
+   			</map>
+   		</property>
+   	</bean>
 	
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
     	<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
