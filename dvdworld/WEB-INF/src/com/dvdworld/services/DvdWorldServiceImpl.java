@@ -1,10 +1,13 @@
 package com.dvdworld.services;
 
+import java.util.Date;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.util.Assert;
 
 import com.dvdworld.business.CartOperations;
+import com.dvdworld.business.CartOperationDetails;
 import com.dvdworld.model.Dvd;
+import com.dvdworld.model.Rental;
 
 public class DvdWorldServiceImpl implements DvdWorldService {
     private DvdWorldDao dvdWorldDao;
@@ -20,6 +23,10 @@ public class DvdWorldServiceImpl implements DvdWorldService {
 
     public Dvd[] findDvds() {
         return this.dvdWorldDao.findDvds();
+    }
+    
+    public Rental[] getCartRentals() {
+    	return this.dvdWorldDao.getCartRentals();
     }
 
     /*
@@ -43,7 +50,7 @@ public class DvdWorldServiceImpl implements DvdWorldService {
     }
     
     
-    public void processCart(Dvd dvd, CartOperations operation)
+    public void processCart(Dvd dvd, CartOperations operation, CartOperationDetails details)
     {
     	Assert.notNull(dvd);
     	
@@ -58,7 +65,13 @@ public class DvdWorldServiceImpl implements DvdWorldService {
         
         switch (operation) {
         case ADDTOCART:
-        	dvdWorldDao.addToCart(dvd);
+        	// Create a rental and add it to the cart.
+        	Rental rental = new Rental();
+        	rental.setDvd(dvd);
+        	rental.setUser(null); // TODO: complete with user please.
+        	rental.setQuantity(1); // TODO: just one for now.
+        	// Other fields like endDate, dueDate and startDate will be set during checkout.
+        	dvdWorldDao.addToCart(rental);
         	break;
         case REMOVEFROMCART:
         	dvdWorldDao.removeFromCart(dvd);

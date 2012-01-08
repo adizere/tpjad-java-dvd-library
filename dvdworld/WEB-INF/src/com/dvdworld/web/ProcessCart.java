@@ -11,6 +11,8 @@ import org.springframework.web.servlet.mvc.Controller;
 import com.dvdworld.model.Dvd;
 import com.dvdworld.services.DvdWorldService;
 import com.dvdworld.business.CartOperations;
+import com.dvdworld.business.CartOperationDetails;
+import com.dvdworld.business.DvdWorldBusinessUtils;
 
 public class ProcessCart implements Controller {
 
@@ -28,13 +30,27 @@ public class ProcessCart implements Controller {
 //        }
 
         // Actual business logic
-        Long id = ServletRequestUtils.getRequiredLongParameter(request, "id");
+    	int id = -1;
+    	try {
+    		id = ServletRequestUtils.getIntParameter(request, "id");
+    	} catch (Exception e) {
+    		// Current DVD ID is not important for this request.
+    	}
         String operationString = ServletRequestUtils.getRequiredStringParameter(request, "operation");
         CartOperations operation = CartOperations.getEnum(operationString);
-        Dvd a = dvdWorldService.readDvd(id);
-        dvdWorldService.processDvd(a, operation);
+        // Other values follow here...
+        String dueDateString = ServletRequestUtils.getStringParameter(request, "dueDate");
+        CartOperationDetails details = new CartOperationDetails();
+        details.dueDate = DvdWorldBusinessUtils.StringToDate(dueDateString);
+        
+        Dvd dvd = dvdWorldService.readDvd(id);
+        dvdWorldService.processCart(dvd, operation, details);
 
-        return new ModelAndView("redirect:viewDvds.html");
+        if (operation == CartOperations.CHECKOUT)
+        	return new ModelAndView("redirect:checkOut.html");
+        
+        //return new ModelAndView("redirect:viewDvds.html");
+        return new ModelAndView("redirect:myShoppingCart.html");
     }
 
 }

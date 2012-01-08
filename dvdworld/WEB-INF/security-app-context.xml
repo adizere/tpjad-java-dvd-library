@@ -6,6 +6,7 @@ This file describes the security access rights of the places in our web site.
 <beans:beans xmlns="http://www.springframework.org/schema/security"
     xmlns:beans="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:security="http://www.springframework.org/schema/security"
     xsi:schemaLocation="http://www.springframework.org/schema/beans 
                     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
                     http://www.springframework.org/schema/security 
@@ -28,10 +29,12 @@ This file describes the security access rights of the places in our web site.
 		<intercept-url pattern="/public/javascript/**" access="permitAll" />
 		<!-- Welcome Page -->
 		<intercept-url pattern="/index.jsp" access="permitAll" />
+		<!-- About Page -->
+		<intercept-url pattern="/about*" access="permitAll" />
 		<!-- Secured Page -->
 		<intercept-url pattern="/secure/**" access="isAuthenticated()" />
 		<!-- Extremely Secured Page -->
-		<intercept-url pattern="/secure/extreme/**" access="hasRole('supervisor')" />
+		<intercept-url pattern="/secure/extreme/**" access="hasRole(ROLE_SUPERVISOR)" /> <!-- hasRole('supervisor')" /> -->
 		<!-- View DVDs Page -->
 		<intercept-url pattern="/viewDvds.html" access="isAuthenticated()" />
 		<!-- View My Shopping Cart Page -->
@@ -39,7 +42,7 @@ This file describes the security access rights of the places in our web site.
 		<!-- Login Page -->
 		<intercept-url pattern="/login*" access="permitAll" />
 		<!-- Some Posting Page -->
-		<intercept-url pattern="/post.html" access="hasAnyRole('supervisor','teller')" />
+		<intercept-url pattern="/processCart.html" access="hasAnyRole('ROLE_SUPERVISOR','ROLE_USER')" /> <!-- hasAnyRole('supervisor','teller')" /> -->
 		<!-- No, no! -->
 		<intercept-url pattern="/**" access="denyAll" />
 		
@@ -74,12 +77,26 @@ This file describes the security access rights of the places in our web site.
    	
     <authentication-manager>
         <authentication-provider>
+        
+        <!-- Better MySQL connectivity login procedure. -->
+        <security:jdbc-user-service data-source-ref="dataSource" 
+        	users-by-username-query="
+        		select username, password, enabled from users where username=?" 
+			
+			authorities-by-username-query="
+				select u.username, ur.authority from users u, user_roles ur 
+				where u.id = ur.user_id and u.username=?" 
+				 />
+        
+        <!-- Brute force approach. Using this only for debugging purposes. -->
+        <!--
             <user-service>
                 <user name="rod" password="koala" authorities="supervisor, teller, user" />
                 <user name="dianne" password="emu" authorities="teller, user" />
                 <user name="scott" password="wombat" authorities="user" />
                 <user name="peter" password="opal" authorities="user" />
             </user-service>
+        -->
         </authentication-provider>
     </authentication-manager>
     

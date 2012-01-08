@@ -13,6 +13,10 @@ body {
 	color: #000;
 }
 
+table td {
+	font: 12px Verdana, Geneva, sans-serif;
+}
+
 h1, h2, h3, h4, h5, h6, p {
 	margin-top: 0;
 }
@@ -193,6 +197,11 @@ select.FormStyeObjRollover {
 	list-style: none; /* hide those bullets */
 	float: left;
 	font: 15px arial;
+	text-align: center;
+}
+
+#MainMenu img {
+	vertical-align: middle;
 }
 
 #MainMenu li a {	
@@ -200,9 +209,9 @@ select.FormStyeObjRollover {
 	margin: 0 1px 0 0;
 	padding: 4px 10px;
 	width: auto;
+	height: 32px; /* The same size as the menu icons are. */
 	background: #666;
 	color: #FFF;
-	text-align: center;
 	text-decoration: none;
 }
 
@@ -219,14 +228,14 @@ select.FormStyeObjRollover {
 	border: none;
 }
 
-#MainMenu div a {	
+#MainMenu div a {
 	position: relative;
 	display: block;
 	margin: 0;
 	padding: 5px 10px;
 	width: auto;
 	white-space: nowrap;
-	text-align: left;
+	/*text-align: left;*/
 	text-decoration: none;
 	background: #999;
 	color: #FFF;
@@ -246,7 +255,7 @@ select.FormStyeObjRollover {
 	font: 11px arial;
 }
 
-/* ========== Legend style ========== */
+/* ========== Notification messages style ========== */
 .Legend {
 	font: 11px arial;
 	color: #999;
@@ -256,6 +265,11 @@ select.FormStyeObjRollover {
 	font: 11px arial;
 	color: #BE3232;
 }
+
+.InfoText {
+	color: #BE3232;
+}
+
 
 /* ========== TableStyle1 ========== */
 

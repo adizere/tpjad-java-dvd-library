@@ -15,7 +15,7 @@
     <ul id="MainMenu">
         <li><a href="index.jsp"
             onmouseover="MenuOpen('Menu_Home')" 
-            onmouseout="MenuCloseTime()">Home</a>
+            onmouseout="MenuCloseTime()"><img src="public/img/metro-back-small.png"/> Home</a>
             <div id="Menu_Home"
                 onmouseover="MenuCancelCloseTime()" 
                 onmouseout="MenuCloseTime()">
@@ -23,7 +23,7 @@
         </li>
         <li><a href="viewDvds.html"
             onmouseover="MenuOpen('Menu_ViewDVDs')" 
-            onmouseout="MenuCloseTime()">View DVDs</a>
+            onmouseout="MenuCloseTime()"><img src="public/img/blue-dvd-case-small.png"/> View DVDs</a>
             <div id="Menu_ViewDVDs"
                 onmouseover="MenuCancelCloseTime()" 
                 onmouseout="MenuCloseTime()">
@@ -31,7 +31,7 @@
         </li>
         <li><a href="myShoppingCart.html"
             onmouseover="MenuOpen('Menu_MyShoppingCart')" 
-            onmouseout="MenuCloseTime()">My Shopping Cart</a>
+            onmouseout="MenuCloseTime()"><img src="public/img/red-shopping-bag-small.png"/> My Shopping Cart</a>
             <div id="Menu_MyShoppingCart"
                 onmouseover="MenuCancelCloseTime()" 
                 onmouseout="MenuCloseTime()">
@@ -39,7 +39,7 @@
         </li>
         <li><a href="about.html"
             onmouseover="MenuOpen('Menu_About')"
-            onmouseout="MenuCloseTime()">About</a>
+            onmouseout="MenuCloseTime()"><img src="public/img/info-small.png"/> About</a>
             <div id="Menu_About"
                 onmouseover="MenuCancelCloseTime()"
                 onmouseout="MenuCloseTime()">

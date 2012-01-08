@@ -1,0 +1,17 @@
+CREATE TABLE `users` (
+  `USER_ID` INT(10) UNSIGNED NOT NULL,
+  `USERNAME` VARCHAR(45) NOT NULL,
+  `PASSWORD` VARCHAR(45) NOT NULL,
+  `ENABLED` tinyint(1) NOT NULL,
+  PRIMARY KEY (`USER_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `user_roles` (
+  `user_role_id` INT(11) NOT NULL,
+  `user_id` INT(11) NOT NULL,
+  `AUTHORITY` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`user_role_id`),
+  KEY `FK_user_roles` (`user_id`),
+  CONSTRAINT `FK_user_roles` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
