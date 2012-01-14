@@ -44,6 +44,7 @@ each time he visits the website.
 	<%@ include file="/WEB-INF/jsp/common/pageFooter.jsp" %>
 </div>
 
+<!--
 	Debug Data:
 	<br />
 	Your principal object is....: <%= request.getUserPrincipal() %>
@@ -55,6 +56,6 @@ each time he visits the website.
 	<a href="secure/index.jsp">Secure page</a>
 	<br />
 	<a href="secure/extreme/index.jsp">Extremely secure page</a>
-	
+-->
 </body>
 </html>

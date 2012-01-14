@@ -27,7 +27,7 @@ function ComputeTotalAmount(outputDivName, inputTextName) {
 	costPerDaysFinal = costPerDaysFinal * totalNumberOfDays;
 	
 	outputDiv.innerHTML =
-		"Final Amount: <b>" + costPerDaysFinal.toString() +
+		"Final Amount: <b>" + parseFloat(costPerDaysFinal.toPrecision(12)).toString() +
 		"</b> euro for <b>" + totalNumberOfDays + "</b> day(s).<br />" +
 		"Start Date: " + DateToString(new Date()) + "<br />" + 
 		"Due Date: " + DateToString(AddDaysToDate(new Date(), totalNumberOfDays));

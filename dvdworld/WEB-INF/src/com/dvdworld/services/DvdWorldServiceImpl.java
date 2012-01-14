@@ -8,9 +8,11 @@ import com.dvdworld.business.CartOperations;
 import com.dvdworld.business.CartOperationDetails;
 import com.dvdworld.model.Dvd;
 import com.dvdworld.model.Rental;
+import com.dvdworld.model.User;
 
 public class DvdWorldServiceImpl implements DvdWorldService {
     private DvdWorldDao dvdWorldDao;
+    
 
     // Not used unless you declare a <protect-pointcut>
     @Pointcut("execution(* com.dvdworld.services.DvdWorldServiceImpl.*(..))")
@@ -49,13 +51,17 @@ public class DvdWorldServiceImpl implements DvdWorldService {
         return dvdWorldDao.readDvd(id);
     }
     
+    public User getUserByUsername(String username) {
+    	return dvdWorldDao.getUser(username);
+    }
     
     public void processCart(Dvd dvd, CartOperations operation, CartOperationDetails details)
     {
-    	Assert.notNull(dvd);
-    	
     	// Check for specific DVD operations, that affect only a particular DVD.
     	if (operation == CartOperations.ADDTOCART || operation == CartOperations.REMOVEFROMCART) {
+    		
+    		Assert.notNull(dvd);
+    		
 	        // We read a DvdWorld account from DAO so it reflects the latest balance
 	        Dvd a = dvdWorldDao.readDvd(dvd.getId());
 	        if (dvd == null) {
@@ -68,7 +74,7 @@ public class DvdWorldServiceImpl implements DvdWorldService {
         	// Create a rental and add it to the cart.
         	Rental rental = new Rental();
         	rental.setDvd(dvd);
-        	rental.setUser(null); // TODO: complete with user please.
+        	rental.setUser(details.userLoggedIn);
         	rental.setQuantity(1); // TODO: just one for now.
         	// Other fields like endDate, dueDate and startDate will be set during checkout.
         	dvdWorldDao.addToCart(rental);

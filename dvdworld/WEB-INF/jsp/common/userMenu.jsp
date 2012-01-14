@@ -1,4 +1,9 @@
 <%@ page contentType="text/html" language="java" %>
+<%@ page import="javax.servlet.ServletContext" %>
+<%@ page import="org.springframework.web.context.WebApplicationContext" %>
+<%@ page import="org.springframework.web.context.support.WebApplicationContextUtils" %>
+<%@ page import="com.dvdworld.model.User" %>
+<%@ page import="com.dvdworld.services.DvdWorldDao" %>
 
 <%--
 //
@@ -48,8 +53,20 @@
     </ul>
     
     <div id="_WelcomeUser">
-		Welcome, <%= request.getUserPrincipal().getName() %> (<%= request.getUserPrincipal().getName() %>) !
-		<br \>
+		Welcome,
+		<%
+			ServletContext servletContext = this.getServletContext();
+			WebApplicationContext wac = WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext);
+			DvdWorldDao dvdWorldDao = (DvdWorldDao)wac.getBean("dvdWorldDao");
+			User user = dvdWorldDao.getUser(request.getUserPrincipal().getName());
+			if (user != null) {
+				out.println(user.getName());
+			} else {
+				out.println(request.getUserPrincipal().getName());
+			}
+		%>
+		(<%= request.getUserPrincipal().getName() %>) !
+		<br />
 		<a href="j_spring_security_logout">Logout</a>
     </div>
 </div>

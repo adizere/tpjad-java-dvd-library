@@ -17,8 +17,6 @@ public class Rental {
 	Date dueDate;
 	// What was the DVD actually brought back?
 	Date endDate;
-	// How much does the borrower pay for this DVD?
-	double cost;
 	
 	public Rental() {
 	}
@@ -77,14 +75,6 @@ public class Rental {
 	
 	public Date getEndDate() {
 		return this.endDate;
-	}
-	
-	public void setCost(double cost) {
-		this.cost = cost;
-	}
-	
-	public double getCost() {
-		return this.cost;
 	}
 
 	public String toString() {

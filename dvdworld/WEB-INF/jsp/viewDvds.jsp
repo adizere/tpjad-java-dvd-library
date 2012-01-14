@@ -68,11 +68,21 @@ Here, users can browse the collection of DVDs.
 				<c:if test="${dvd.quantity > 10}">
 					<img src="public/img/quantity_high.png" />
 				</c:if>
-				<b>Quantity available</b>: <c:out value="${dvd.quantity}" />
+				<b>Quantity available</b>:
+				<c:choose>
+					<c:when test="${dvd.quantity > 0}">
+						<c:out value="${dvd.quantity}" />
+					</c:when>
+					<c:otherwise>
+						<div class="InfoText">Out of supply.</div>
+					</c:otherwise>
+				</c:choose>
 				<br />
 				<b>Price</b>: <c:out value="${dvd.price}" /> <div class="PriceTag">euro/day</div>
 				<br /><br />
-				<a href="processCart.html?id=<c:out value="${dvd.id}"/>&operation=ADDTOCART"><img src="public/img/add_to_chart.png" alt="Add to cart!" /></a>
+				<c:if test="${dvd.quantity > 0}">
+					<a href="processCart.html?id=<c:out value="${dvd.id}"/>&operation=ADDTOCART"><img src="public/img/add-to-cart.png" alt="Add to cart!" /></a>
+				</c:if>
 			</td>
 		</tr>
 	</c:forEach>
