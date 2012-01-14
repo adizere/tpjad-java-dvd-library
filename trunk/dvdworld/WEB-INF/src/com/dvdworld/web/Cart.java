@@ -53,4 +53,8 @@ public class Cart {
 			}
 		}
 	}
+	
+	public void emptyCart() {
+		this.rentals.clear();
+	}
 }

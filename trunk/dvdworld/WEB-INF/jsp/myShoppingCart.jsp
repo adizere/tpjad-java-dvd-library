@@ -33,6 +33,9 @@ Here, users can preview what they actually chose to rent.
 	
 	<c:choose>
 	<c:when test="${not empty cartRentals}">
+	
+	<!-- <p><a href="processCart.html?operation=EMPTYCART"><img src="public/img/empty-cart.png" alt="Empty Cart"/></a></p> -->
+	
 	<table class="ViewDvdTableStyle">
 	<tr>
 		<th>ID</th>
@@ -59,7 +62,8 @@ Here, users can preview what they actually chose to rent.
 				<br />
 				<b>Price</b>: <c:out value="${myDvd.price}" /> <div class="PriceTag">euro/day</div>
 				<br /><br />
-				<a href="processCart.html?id=<c:out value="${myDvd.id}"/>&operation=REMOVEFROMCART"><img src="public/img/cancel-circle-small.png"/> Remove</a>
+				<a href="processCart.html?id=<c:out value="${myDvd.id}"/>&operation=REMOVEFROMCART"><img src="public/img/remove-from-cart.png" alt="Remove From Cart"/></a>
+				<a href="processCart.html?operation=EMPTYCART"><img src="public/img/empty-cart.png" alt="Empty Cart"/></a>
 			</td>
 		</tr>
 		<c:set var="costPerDay" value="${costPerDay + myDvd.price}" scope="page"/>
@@ -71,6 +75,7 @@ Here, users can preview what they actually chose to rent.
 	<br />
 	The cost to rent <i>all</i> these selected DVDs from your shopping cart is <b><span id="_CostPerDay"><c:out value="${costPerDay}"/></span></b> euro/day.
 	</div>
+	
 	
 	<br />
 	<br />
@@ -86,9 +91,11 @@ Here, users can preview what they actually chose to rent.
 					Days:
 					<input type="text" id="_DaysToRent" name="daysToRent" class="FormInputStyle" style="width:50px;" onfocus="ActivateFormInputBgColor(this,'FormStyeObjRollover')" onblur="DeactivateFormInputBgColor(this, 'FormStyeObjRollover')" />
 					<input type="button" value="Compute Total Amount" onClick="ComputeTotalAmount('_ComputeTotalAmountResult', '_DaysToRent')" />
+					<br />
 					<div id="_ComputeTotalAmountResult" class="InfoText"></div>
 					<br /><br />
-					<input type="submit" value="Check Out!"/>
+					<!-- <input type="submit" value="Check Out!"/>-->
+					<input type="image" src="public/img/check-out-cart.png" alt="Check Out!" />
 				</form>
 				</div>
 			</td>

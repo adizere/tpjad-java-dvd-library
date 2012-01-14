@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
 import com.dvdworld.model.Dvd;
+import com.dvdworld.model.User;
 import com.dvdworld.services.DvdWorldService;
 import com.dvdworld.business.CartOperations;
 import com.dvdworld.business.CartOperationDetails;
@@ -44,6 +45,11 @@ public class ProcessCart implements Controller {
         details.dueDate = DvdWorldBusinessUtils.StringToDate(dueDateString);
         
         Dvd dvd = dvdWorldService.readDvd(id);
+        
+        if (operation == CartOperations.ADDTOCART) {
+        	details.userLoggedIn = dvdWorldService.getUserByUsername(request.getUserPrincipal().getName());
+        }
+        
         dvdWorldService.processCart(dvd, operation, details);
 
         if (operation == CartOperations.CHECKOUT)
