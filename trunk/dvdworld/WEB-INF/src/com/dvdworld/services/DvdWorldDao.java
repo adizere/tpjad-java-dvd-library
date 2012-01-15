@@ -1,5 +1,7 @@
 package com.dvdworld.services;
 
+import java.util.Date;
+
 import com.dvdworld.model.Dvd;
 import com.dvdworld.model.User;
 import com.dvdworld.model.Rental;
@@ -27,7 +29,7 @@ public interface DvdWorldDao {
     public Rental[] getCartRentals();
     public boolean addToCart(Rental rental);
     public void removeFromCart(Dvd dvd);
-    public boolean checkOut();
+    public boolean checkOut(Date dueDate);
     public void emptyCart();
     
 	//////////////////////////////////////////////////////////////////////////

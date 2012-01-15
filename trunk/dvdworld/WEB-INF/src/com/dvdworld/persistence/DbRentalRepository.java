@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import com.dvdworld.db.DvdWorldDbBroker;
@@ -62,7 +64,7 @@ public class DbRentalRepository implements IRentalRepository {
 				rentalList.add(rental);
 			}
 		} catch (Exception e) {
-			System.out.println("Error getting all DVDs: " + e);
+			System.out.println("Error getting all Rentals: " + e);
 			this.dbBroker.closeConnection(connection);
 			return null;
 		}
@@ -74,30 +76,39 @@ public class DbRentalRepository implements IRentalRepository {
 	// Check out Rentals received from the Shopping Cart
 	// and add Rental records to the database.
 	//
-	public boolean checkOut(List<Rental> rentals) {
+	public boolean checkOut(List<Rental> rentals, Date dueDate) {
 		Connection connection = null;
 		
 		if (rentals.size() == 0)
 			return false;
+		
+		Iterator<Rental> it = rentals.iterator();
+		while (it.hasNext()) {
+			Rental rental = (Rental)it.next();
+			rental.setStartDate(new Date());
+			rental.setDueDate(dueDate);
+		}
 		
 		try {
 			connection = this.dbBroker.getConnection();
 			
 			for (int i = 0; i < rentals.size(); i++) {
 				Rental rental = rentals.get(i);
+				// Remember we set the endDate to NULL, because we don't actually know
+				// when the Borrower is going to bring the DVD back.
 				PreparedStatement insertStmt =
-					connection.prepareStatement("INSERT INTO rentals values (?, ?, ?, ?, ?, ?, ?)");
+					connection.prepareStatement("INSERT INTO rentals values (?, ?, ?, ?, ?, ?, NULL)");
 				insertStmt.setInt(1, 0);
 				insertStmt.setInt(2, rental.getDvd().getId());
 				insertStmt.setInt(3, rental.getUser().getId());
 				insertStmt.setInt(4, rental.getQuantity());
 				insertStmt.setDate(5, new java.sql.Date(rental.getStartDate().getTime()));
 				insertStmt.setDate(6, new java.sql.Date(rental.getDueDate().getTime()));
-				insertStmt.setDate(7, new java.sql.Date(rental.getEndDate().getTime()));
 				insertStmt.execute();
 			}
 		} catch (Exception e) {
-			System.out.println("Error adding new DVD: " + e);
+			System.out.println("Error adding checking out: " + e);
+			e.printStackTrace();
 			this.dbBroker.closeConnection(connection);
 			return false;
 		}

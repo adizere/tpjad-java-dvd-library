@@ -94,5 +94,9 @@
     <bean name="/about.html" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
     	<property name="viewName" value="about"/>
     </bean>
+    
+    <bean name="/checkOut.html" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+    	<property name="viewName" value="checkOut"/>
+    </bean>
 
 </beans>
