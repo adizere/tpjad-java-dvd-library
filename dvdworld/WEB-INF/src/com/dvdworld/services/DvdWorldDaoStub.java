@@ -1,5 +1,6 @@
 package com.dvdworld.services;
 
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.HashMap;
@@ -118,12 +119,12 @@ public class DvdWorldDaoStub implements DvdWorldDao {
     //
     // Check out the entire Shopping Cart.
     //
-    public boolean checkOut() {
+    public boolean checkOut(Date dueDate) {
     	boolean boolResult;
     	if (this.cart.rentals.size() == 0)
     		return false;
     	
-    	boolResult = this.dbBroker.checkOut(this.cart.rentals);
+    	boolResult = this.dbBroker.checkOut(this.cart.rentals, dueDate);
     	if (boolResult == false)
     		return false;
     	this.cart.emptyCart();

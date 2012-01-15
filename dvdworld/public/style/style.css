@@ -268,7 +268,13 @@ select.FormStyeObjRollover {
 
 .InfoText {
 	color: #BE3232;
+}
+
+.PriceTag {
+	margin: none;
+	padding: none;
 	display: inline;
+	color: #bbb;
 }
 
 
@@ -284,6 +290,7 @@ table.TableStyle1, table.TableStyle tr, table.TableStyle th, table.TableStyle1 t
 	color: #FFF;
 }
 
+/* ========== ViewDvdTableStyle ========== */
 
 table.ViewDvdTableStyle {
 	font: 12px Verdana, Geneva, sans-serif;
@@ -308,11 +315,29 @@ table.ViewDvdTableStyle td {
 	border-color: 1px solid #fff;
 }
 
-.PriceTag {
-	margin: none;
-	padding: none;
-	display: inline;
-	color: #bbb;
+/* ========== LayoutTableStyle1 ========== */
+
+table.LayoutTableStyle1 {
+	font: 12px Verdana, Geneva, sans-serif;
 }
+
+
+table.LayoutTableStyle1, table.LayoutTableStyle1 tr, table.LayoutTableStyle1 th, table.LayoutTableStyle1 td {
+	/*border-collapse: collapse;*/
+	border: 0px;
+}
+
+table.LayoutTableStyle1 td {
+	border: none;
+}
+
+.LayoutTableStyle1 th {
+	background-color: #ccc;
+	color: #fff;
+	border-collapse: collapse;
+	border-color: 1px solid #fff;
+}
+
+
 
 

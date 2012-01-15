@@ -74,7 +74,7 @@ Here, users can browse the collection of DVDs.
 						<c:out value="${dvd.quantity}" />
 					</c:when>
 					<c:otherwise>
-						<div class="InfoText">Out of supply.</div>
+						<span class="InfoText">Out of supply.</span>
 					</c:otherwise>
 				</c:choose>
 				<br />

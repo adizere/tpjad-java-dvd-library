@@ -26,5 +26,5 @@ public interface DvdWorldService {
     //public Dvd post(Dvd dvd, double amount);
     
     //@PreAuthorize("hasRole('ROLE_TELLER')")
-    public void processCart(Dvd dvd, CartOperations operation, CartOperationDetails details);
+    public boolean processCart(Dvd dvd, CartOperations operation, CartOperationDetails details);
 }

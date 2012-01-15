@@ -19,6 +19,7 @@
     -->
     <mvc:view-controller path="/login.html" />
     <mvc:view-controller path="/about.html" />
+    <mvc:view-controller path="/checkOut.html" />
 
     <!-- Declare the Resolver -->
     <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />

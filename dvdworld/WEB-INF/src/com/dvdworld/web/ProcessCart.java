@@ -30,30 +30,41 @@ public class ProcessCart implements Controller {
 //            throw new AccessDeniedException("You must be a teller to post transactions (Spring Security message)");
 //        }
 
+    	boolean success = false;
+    	Dvd dvd = null;
+    	CartOperationDetails details = new CartOperationDetails();
+    	
         // Actual business logic
     	int id = -1;
     	try {
     		id = ServletRequestUtils.getIntParameter(request, "id");
+    		dvd = dvdWorldService.readDvd(id);
     	} catch (Exception e) {
     		// Current DVD ID is not important for this request.
     	}
+    	
+    	try {
+    		int daysToRent = ServletRequestUtils.getIntParameter(request, "daysToRent");
+    		details.dueDate = DvdWorldBusinessUtils.addDaysFromNow(daysToRent);
+    	} catch (Exception e) {
+    	}
+    	
         String operationString = ServletRequestUtils.getRequiredStringParameter(request, "operation");
         CartOperations operation = CartOperations.getEnum(operationString);
         // Other values follow here...
-        String dueDateString = ServletRequestUtils.getStringParameter(request, "dueDate");
-        CartOperationDetails details = new CartOperationDetails();
-        details.dueDate = DvdWorldBusinessUtils.StringToDate(dueDateString);
-        
-        Dvd dvd = dvdWorldService.readDvd(id);
         
         if (operation == CartOperations.ADDTOCART) {
         	details.userLoggedIn = dvdWorldService.getUserByUsername(request.getUserPrincipal().getName());
         }
         
-        dvdWorldService.processCart(dvd, operation, details);
+        success = dvdWorldService.processCart(dvd, operation, details);
 
-        if (operation == CartOperations.CHECKOUT)
-        	return new ModelAndView("redirect:checkOut.html");
+        if (operation == CartOperations.CHECKOUT) {
+        	String url = "redirect:checkOut.html";
+        	if (success == true)
+        		url += "?success=true";
+        	return new ModelAndView(url);
+        }
         
         //return new ModelAndView("redirect:viewDvds.html");
         return new ModelAndView("redirect:myShoppingCart.html");

@@ -39,6 +39,8 @@ This file describes the security access rights of the places in our web site.
 		<intercept-url pattern="/viewDvds.html" access="isAuthenticated()" />
 		<!-- View My Shopping Cart Page -->
 		<intercept-url pattern="/myShoppingCart.html" access="isAuthenticated()" />
+		<!-- Check Out Shopping Cart Page -->
+		<intercept-url pattern="/checkOut*" access="isAuthenticated()" />
 		<!-- Login Page -->
 		<intercept-url pattern="/login*" access="permitAll" />
 		<!-- Some Posting Page -->

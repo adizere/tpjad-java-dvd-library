@@ -6,6 +6,7 @@ import org.springframework.util.Assert;
 
 import com.dvdworld.business.CartOperations;
 import com.dvdworld.business.CartOperationDetails;
+import com.dvdworld.dbg.DWDbg;
 import com.dvdworld.model.Dvd;
 import com.dvdworld.model.Rental;
 import com.dvdworld.model.User;
@@ -55,8 +56,10 @@ public class DvdWorldServiceImpl implements DvdWorldService {
     	return dvdWorldDao.getUser(username);
     }
     
-    public void processCart(Dvd dvd, CartOperations operation, CartOperationDetails details)
+    public boolean processCart(Dvd dvd, CartOperations operation, CartOperationDetails details)
     {
+    	boolean success = true;
+    	
     	// Check for specific DVD operations, that affect only a particular DVD.
     	if (operation == CartOperations.ADDTOCART || operation == CartOperations.REMOVEFROMCART) {
     		
@@ -83,13 +86,13 @@ public class DvdWorldServiceImpl implements DvdWorldService {
         	dvdWorldDao.removeFromCart(dvd);
         	break;
         case CHECKOUT:
-        	dvdWorldDao.checkOut();
+        	success = dvdWorldDao.checkOut(details.dueDate);
         	break;
         case EMPTYCART:
         	dvdWorldDao.emptyCart();
         	break;
         }
         
-        return;
+        return success;
     }
 }

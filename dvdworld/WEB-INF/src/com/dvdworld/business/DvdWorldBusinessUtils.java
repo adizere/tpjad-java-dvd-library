@@ -2,6 +2,7 @@ package com.dvdworld.business;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Calendar;
 
 //
 // Various business utilities we can use inside all of our Java code.
@@ -22,5 +23,14 @@ public class DvdWorldBusinessUtils {
 	
 	public static Long intToLong(int intValue) {
 		return Integer.valueOf(intValue).longValue();
+	}
+	
+	public static Date addDaysFromNow(int days) {
+		if (days < 0)
+			return null;
+		
+		Calendar now = Calendar.getInstance();
+		now.add(Calendar.DATE, days);
+		return now.getTime();
 	}
 }
