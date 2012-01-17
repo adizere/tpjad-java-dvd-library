@@ -117,6 +117,26 @@ public class DvdWorldDbBroker {
 	}
 	
 	
+	public List<Rental> getRentalsByUser(User user) {
+		return this.rentalRepository.getRentalsByUser(user);
+	}
+	
+	public Rental getRentalById(int rentalId) {
+		return this.rentalRepository.getRentalById(rentalId);
+	}
+	
+	public boolean removeRental(Rental rental) {
+		return this.rentalRepository.removeRental(rental);
+	}
+	
+	public boolean proceedAllRentals(User user) {
+		return this.rentalRepository.proceedAllRentals(user);
+	}
+	
+	public boolean endRent(Rental rental) {
+		return this.rentalRepository.endRent(rental);
+	}
+	
 	//////////////////////////////////////////////////////////////////////////
 	// User operations
 	//////////////////////////////////////////////////////////////////////////
@@ -127,5 +147,9 @@ public class DvdWorldDbBroker {
 	
 	public User getUser(String username) {
 		return this.userRepository.getUser(username);
+	}
+	
+	public List<User> getAllUsers() {
+		return this.userRepository.getAllUsers();
 	}
 }

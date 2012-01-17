@@ -31,7 +31,44 @@ public class DvdWorldServiceImpl implements DvdWorldService {
     public Rental[] getCartRentals() {
     	return this.dvdWorldDao.getCartRentals();
     }
-
+    
+    public Rental[] getRentalsByUser(User user) {
+    	return this.dvdWorldDao.getRentalsByUser(user);
+    }
+    
+    public Rental[] getOpenRentalsByUser(User user) {
+    	return this.dvdWorldDao.getOpenRentalsByUser(user);
+    }
+    
+    public Rental[] getCurrentRentalsByUser(User user) {
+    	return this.dvdWorldDao.getCurrentRentalsByUser(user);
+    }
+    
+    public Rental[] getClosedRentalsByUser(User user) {
+    	return this.dvdWorldDao.getClosedRentalsByUser(user);
+    }
+    
+    public Rental getRentalById(int rentalId) {
+    	return this.dvdWorldDao.getRentalById(rentalId);
+    }
+    
+    public boolean restoreRental(Rental rental) {
+    	CartOperationDetails details = new CartOperationDetails();
+    	// Remove DVD.
+    	this.processCart(rental.getDvd(), CartOperations.REMOVEFROMCART, details);
+    	// Remove Rental.
+    	this.dvdWorldDao.removeRental(rental);
+    	return true;
+    }
+    
+    public boolean proceedAllRentals(User user) {
+    	return this.dvdWorldDao.proceedAllRentals(user);
+    }
+    
+    public boolean endRent(Rental rental) {
+    	return this.dvdWorldDao.endRent(rental);
+    }
+    
     /*
      * Like, this is another hint we can use!!
     public Dvd post(Dvd account, double amount) {
@@ -52,8 +89,16 @@ public class DvdWorldServiceImpl implements DvdWorldService {
         return dvdWorldDao.readDvd(id);
     }
     
+    public User getUserById(int userId) {
+    	return dvdWorldDao.getUser(userId);
+    }
+    
     public User getUserByUsername(String username) {
     	return dvdWorldDao.getUser(username);
+    }
+
+    public User[] getAllUsers() {
+    	return dvdWorldDao.getAllUsers();
     }
     
     public boolean processCart(Dvd dvd, CartOperations operation, CartOperationDetails details)

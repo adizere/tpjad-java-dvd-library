@@ -38,4 +38,18 @@ public interface DvdWorldDao {
     
     public User getUser(int id);
     public User getUser(String username);
+    public User[] getAllUsers();
+    
+	//////////////////////////////////////////////////////////////////////////
+	// Rental operations
+	//////////////////////////////////////////////////////////////////////////
+    
+    public Rental[] getRentalsByUser(User user);
+    public Rental[] getOpenRentalsByUser(User user);
+    public Rental[] getCurrentRentalsByUser(User user);
+    public Rental[] getClosedRentalsByUser(User user);
+    public Rental getRentalById(int rentalId);
+    public boolean removeRental(Rental rental);
+    public boolean proceedAllRentals(User user);
+    public boolean endRent(Rental rental);
 }

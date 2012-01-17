@@ -17,6 +17,8 @@ public class Rental {
 	Date dueDate;
 	// What was the DVD actually brought back?
 	Date endDate;
+	// Rental has started, meaning that the Administrator performed Proceed operation.
+	boolean rentalStarted = false;
 	
 	public Rental() {
 	}
@@ -77,6 +79,14 @@ public class Rental {
 		return this.endDate;
 	}
 
+	public void setRentalStarted(boolean rentalStarted) {
+		this.rentalStarted = rentalStarted;
+	}
+	
+	public boolean getRentalStarted() {
+		return this.rentalStarted;
+	}
+	
 	public String toString() {
 		return "Rental[id="+id+","+dvd.toString()+"]";
 	}
