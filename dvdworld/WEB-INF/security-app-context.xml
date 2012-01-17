@@ -45,6 +45,10 @@ This file describes the security access rights of the places in our web site.
 		<intercept-url pattern="/login*" access="permitAll" />
 		<!-- Some Posting Page -->
 		<intercept-url pattern="/processCart.html" access="hasAnyRole('ROLE_SUPERVISOR','ROLE_USER')" /> <!-- hasAnyRole('supervisor','teller')" /> -->
+		
+		<!-- Admin View Rentals, Users Page -->
+		<intercept-url pattern="/admin*" access="hasRole('ROLE_SUPERVISOR')" />
+		
 		<!-- No, no! -->
 		<intercept-url pattern="/**" access="denyAll" />
 		

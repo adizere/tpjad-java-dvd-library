@@ -8,6 +8,7 @@ import java.util.Map;
 
 import com.dvdworld.business.DvdWorldBusinessUtils;
 import com.dvdworld.db.DvdWorldDbBroker;
+import com.dvdworld.dbg.DWDbg;
 import com.dvdworld.infrastructure.DvdWorldConfigInfo;
 import com.dvdworld.model.Dvd;
 import com.dvdworld.model.User;
@@ -161,5 +162,90 @@ public class DvdWorldDaoStub implements DvdWorldDao {
     
     public User getUser(String username) {
     	return this.dbBroker.getUser(username);
+    }
+    
+    public User[] getAllUsers() {
+    	List<User> userList = this.dbBroker.getAllUsers();
+    	User[] userArray = (User[])userList.toArray(new User[]{});
+    	return userArray;
+    }
+    
+	//////////////////////////////////////////////////////////////////////////
+	// Rental operations
+	//////////////////////////////////////////////////////////////////////////
+    
+    public Rental[] getRentalsByUser(User user) {
+    	List<Rental> rentalList = this.dbBroker.getRentalsByUser(user);
+    	if (rentalList.size() == 0)
+    		return new Rental[] {};
+    	Rental[] rentalArray = (Rental[])rentalList.toArray(new Rental[] {});
+    	return rentalArray;
+    }
+    
+    public Rental[] getOpenRentalsByUser(User user) {
+    	List<Rental> rentalList = this.dbBroker.getRentalsByUser(user);
+    	if (rentalList == null || rentalList.size() == 0)
+    		return new Rental[] {};
+    	DWDbg.log("Returning open rentals for user: " + user.toString());
+    	Iterator<Rental> it = rentalList.iterator();
+    	while (it.hasNext()) {
+    		Rental rental = it.next();
+    		if (rental.getEndDate() != null || rental.getRentalStarted() == true)
+    			it.remove();
+    		else
+    			DWDbg.log(rental.toString());
+    	}
+    	Rental[] rentalArray = (Rental[])rentalList.toArray(new Rental[] {});
+    	return rentalArray;
+    }
+    
+    public Rental[] getCurrentRentalsByUser(User user) {
+    	List<Rental> rentalList = this.dbBroker.getRentalsByUser(user);
+    	if (rentalList == null || rentalList.size() == 0)
+    		return new Rental[] {};
+    	DWDbg.log("Returning current rentals for user: " + user.toString());
+    	Iterator<Rental> it = rentalList.iterator();
+    	while (it.hasNext()) {
+    		Rental rental = it.next();
+    		if (rental.getEndDate() != null || rental.getRentalStarted() == false)
+    			it.remove();
+    		else
+    			DWDbg.log(rental.toString());
+    	}
+    	Rental[] rentalArray = (Rental[])rentalList.toArray(new Rental[] {});
+    	return rentalArray;
+    }
+    
+    public Rental[] getClosedRentalsByUser(User user) {
+    	List<Rental> rentalList = this.dbBroker.getRentalsByUser(user);
+    	if (rentalList == null || rentalList.size() == 0)
+    		return new Rental[] {};
+    	DWDbg.log("Returning closed rentals for user: " + user.toString());
+    	Iterator<Rental> it = rentalList.iterator();
+    	while (it.hasNext()) {
+    		Rental rental = it.next();
+    		if (rental.getEndDate() == null)
+    			it.remove();
+    		else
+    			DWDbg.log(rental.toString());
+    	}
+    	Rental[] rentalArray = (Rental[])rentalList.toArray(new Rental[] {});
+    	return rentalArray;
+    }
+    
+    public Rental getRentalById(int rentalId) {
+    	return this.dbBroker.getRentalById(rentalId);
+    }
+    
+    public boolean removeRental(Rental rental) {
+    	return this.dbBroker.removeRental(rental);
+    }
+    
+    public boolean proceedAllRentals(User user) {
+    	return this.dbBroker.proceedAllRentals(user);
+    }
+    
+    public boolean endRent(Rental rental) {
+    	return this.dbBroker.endRent(rental);
     }
 }

@@ -17,7 +17,19 @@ public interface DvdWorldService {
     //@PreAuthorize("hasRole('ROLE_TELLER')")
     public Rental[] getCartRentals();
     
+    public Rental[] getRentalsByUser(User user);
+    public Rental[] getOpenRentalsByUser(User user);
+    public Rental[] getCurrentRentalsByUser(User user);
+    public Rental[] getClosedRentalsByUser(User user);
+    public Rental getRentalById(int rentalId);
+    public boolean restoreRental(Rental rental);
+    public boolean proceedAllRentals(User user);
+    public boolean endRent(Rental rental);
+    
+    public User getUserById(int userId);
     public User getUserByUsername(String username);
+    
+    public User[] getAllUsers();
     
     // TODO: Just a hint of what we can do further:
     //@PreAuthorize(

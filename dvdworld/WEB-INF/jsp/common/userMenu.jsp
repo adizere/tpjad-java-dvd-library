@@ -1,5 +1,7 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html" language="java" %>
 <%@ page import="javax.servlet.ServletContext" %>
+<%@ page import="org.springframework.security.core.context.SecurityContextHolder"%>
 <%@ page import="org.springframework.web.context.WebApplicationContext" %>
 <%@ page import="org.springframework.web.context.support.WebApplicationContextUtils" %>
 <%@ page import="com.dvdworld.model.User" %>
@@ -15,6 +17,13 @@
 //		string (e.g. "Welcome, john!").
 //
 --%>
+
+<%
+	// Do some context sniffing.
+	ServletContext servletContext = this.getServletContext();
+	WebApplicationContext wac = WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext);
+	DvdWorldDao dvdWorldDao = (DvdWorldDao)wac.getBean("dvdWorldDao");
+%>
 
 <div class="TopMenuPane">
     <ul id="MainMenu">
@@ -42,6 +51,18 @@
                 onmouseout="MenuCloseTime()">
             </div>
         </li>
+        
+        <sec:authorize access="hasRole('ROLE_SUPERVISOR')">
+        <li><a href="adminViewRentals.html"
+            onmouseover="MenuOpen('Menu_AdminViewRentals')" 
+            onmouseout="MenuCloseTime()"><img src="public/img/settings-small.png"/> View Rentals</a>
+            <div id="Menu_AdminViewRentals"
+                onmouseover="MenuCancelCloseTime()" 
+                onmouseout="MenuCloseTime()">
+            </div>
+        </li>
+        </sec:authorize>
+        
         <li><a href="about.html"
             onmouseover="MenuOpen('Menu_About')"
             onmouseout="MenuCloseTime()"><img src="public/img/info-small.png"/> About</a>
@@ -55,9 +76,6 @@
     <div id="_WelcomeUser">
 		Welcome,
 		<%
-			ServletContext servletContext = this.getServletContext();
-			WebApplicationContext wac = WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext);
-			DvdWorldDao dvdWorldDao = (DvdWorldDao)wac.getBean("dvdWorldDao");
 			User user = dvdWorldDao.getUser(request.getUserPrincipal().getName());
 			if (user != null) {
 				out.println(user.getName());
@@ -66,6 +84,10 @@
 			}
 		%>
 		(<%= request.getUserPrincipal().getName() %>) !
+		<br />
+		<sec:authorize access="hasRole('ROLE_SUPERVISOR')">
+		You are logged in as administrator.
+		</sec:authorize>
 		<br />
 		<a href="j_spring_security_logout">Logout</a>
     </div>

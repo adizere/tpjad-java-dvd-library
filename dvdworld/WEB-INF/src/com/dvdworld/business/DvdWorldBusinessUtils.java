@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Calendar;
 
+import com.dvdworld.model.Rental;
+
 //
 // Various business utilities we can use inside all of our Java code.
 //
@@ -32,5 +34,28 @@ public class DvdWorldBusinessUtils {
 		Calendar now = Calendar.getInstance();
 		now.add(Calendar.DATE, days);
 		return now.getTime();
+	}
+	
+	public static double getTotalSumForRentals(Rental []rentals) {
+		if (rentals == null || rentals.length == 0)
+			return 0;
+		
+		int sumToPay = 0;
+		Date startDate = null;
+		Date dueDate = null;
+		
+		for (int i = 0; i < rentals.length; i++) {
+			startDate = rentals[i].getStartDate();
+			dueDate = rentals[i].getDueDate();
+			Calendar startCal = Calendar.getInstance();
+			Calendar dueCal = Calendar.getInstance();
+			startCal.setTime(startDate);
+			dueCal.setTime(dueDate);
+			long diff = dueCal.getTimeInMillis() - startCal.getTimeInMillis();
+			long diffDays = diff / (24 * 60 * 60 * 1000);
+			sumToPay += rentals[i].getDvd().getPrice() * diffDays;
+		}
+		
+		return sumToPay;
 	}
 }

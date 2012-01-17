@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 //
 public class DWDbg {
 	
+	public static boolean useLog = true;
 	public static String debugFilePath = "c:\\a.txt";
 	
 	public DWDbg() {
@@ -25,6 +26,20 @@ public class DWDbg {
 			System.err.println("Debug handling exception: " + e.getMessage());
 		} finally {
 			pw.close();
+		}
+	}
+	
+	public static void log(String debugString) {
+		if (DWDbg.useLog == true)
+			DWDbg.out(debugString);
+	}
+	
+	public static void logStack(Exception e) {
+		if (DWDbg.useLog == true) {
+			StackTraceElement[] stackTrace = e.getStackTrace();
+			for (int i = 0; i < stackTrace.length; i++) {
+				DWDbg.log(stackTrace[i].toString());
+			}
 		}
 	}
 }

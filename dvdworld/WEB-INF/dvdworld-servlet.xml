@@ -25,7 +25,15 @@
     </bean>
 
     <bean id="processCart" class="com.dvdworld.web.ProcessCart">
-        <constructor-arg ref="dvdWorldService"/>
+        <constructor-arg ref="dvdWorldService" />
+    </bean>
+    
+    <bean id="adminControl" class="com.dvdworld.web.AdminController">
+    	<constructor-arg ref="dvdWorldService" />
+    </bean>
+    
+    <bean id="viewUser" class="com.dvdworld.web.AdminViewUser">
+    	<constructor-arg ref="dvdWorldService" />
     </bean>
 
 	<!--
@@ -68,10 +76,16 @@
    					<ref bean="listDvds" />
    				</entry>
    				<entry key="/myShoppingCart.html">
-   					<ref bean="myShoppingCart"/>
+   					<ref bean="myShoppingCart" />
    				</entry>
    				<entry key="/processCart.html">
    					<ref bean="processCart" />
+   				</entry>
+   				<entry key="/adminViewRentals.html">
+   					<ref bean="adminControl" />
+   				</entry>
+   				<entry key="/adminViewUser.html">
+   					<ref bean="viewUser" />
    				</entry>
    			</map>
    		</property>
